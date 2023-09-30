@@ -148,8 +148,10 @@ void report_set(vector<int>& set, map<int, size_t>& id_map, string prefix)
 {
 	cout << prefix;
 
-	for (size_t i = 0; i < set.size(); ++i)
-		cout << id_map[set[i]] << " ";
+	for (size_t i = 0; i < set.size(); ++i) {
+		//cout << id_map[set[i]] << " ";
+		cout << set[i] << " "; // cbmc WCNF: use variables instead of IDs (IDs would start with 1)
+	}
 
 	cout << "0" << endl;
 }
@@ -248,8 +250,10 @@ void solve(
 
 	// a mapping back from selectors to their ids
 	map<int, size_t> id_map;
-	for (size_t i = 0; i < selectors.size(); ++i)
+	for (size_t i = 0; i < selectors.size(); ++i) {
 		id_map[selectors[i]] = i + 1;
+		cout << "c WCNF Info: selector: " << selectors[i] << "; id: " << id_map[selectors[i]] << endl;
+	}
 
 	// number of iterations and solutions found
 	size_t iters = 0, diags = 0, expls = 0;
