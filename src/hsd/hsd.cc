@@ -239,11 +239,11 @@ void solve(
 
 	// check if the system itself is consistent
 	if (c.check(false) == false) {
-		cout << "s NO SOLUTION" << endl;
-		return;
+		cout << "c System itself (without observations) not consistent" << endl;
+		// WCNF: Do not return here
 	}
 	// and if the system is not consistent with the observations
-	else if (c.check(true) == true) {
+	if (c.check(true) == true) {
 		cout << "s OPTIMUM FOUND" << endl << "o 0" << endl;
 		return;
 	}
